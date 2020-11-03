@@ -10,6 +10,7 @@ class ParticipationsController < ApplicationController
   # GET /participations/1
   # GET /participations/1.json
   def show
+    @participation = Participation.find(params[:id])
   end
 
   # GET /participations/new
@@ -56,7 +57,7 @@ class ParticipationsController < ApplicationController
   def destroy
     @participation.destroy
     respond_to do |format|
-      format.html { redirect_to participations_url, notice: 'Participation was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Participation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
