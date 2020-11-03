@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+http://murmuring-spire-32624.herokuapp.com/
 
-Things you may want to cover:
+an event brite type of app
 
-* Ruby version
+check it out on the link above.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+enjoy!
