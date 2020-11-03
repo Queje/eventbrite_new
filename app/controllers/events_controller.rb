@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:show, :new, :create, :edit, :destroy]
 
   # GET /events
   # GET /events.json
@@ -72,5 +73,12 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :user_id)
     end
+
+    def authenticate_user
+      unless user_signed_in? == true
+      flash[:danger] = "Please log in."
+      redirect_to new_user_session_path
+      end
+  end
 
 end

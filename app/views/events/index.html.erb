@@ -1,37 +1,52 @@
+<div class="jumbotron text-center">
+    <h1 class="display-4">Bienvenue sur Events News!</h1>
+    <p class="lead">Poster vos evenements et partager le fun!</p>
+    <hr class="my-4">
+    <p class="lead">
+    <%= link_to "Un nouvel évenement à créer?", new_event_path, class:"btn btn-success btn-lg" %>
+    </p>
+</div>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start date</th>
-      <th>Duration</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card">
+  <div class="card-body">
+  <h4><U>Events:</U></h4>
 
-  <tbody>
-    <% @events.each do |event| %>
+  <table class="table text-center">
+    <thead>
       <tr>
-        <td><%= event.start_date %></td>
-        <td><%= event.duration %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.price %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Start date</th>
+        <th>Duration (h)</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price (€)</th>
+        <th>Location</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.start_date %></td>
+          <td><%= event.duration %></td>
+          <td><%= event.title %></td>
+          <td><%= event.description %></td>
+          <td><%= event.price %></td>
+          <td><%= event.location %></td>
+          <td><%= link_to 'Show', event, class:'text-primary' %></td>
+          <td><%= link_to 'Edit', edit_event_path(event), class:'text-success' %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:'text-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Event', new_event_path %>
+  <br>
+
+  <%= link_to 'New Event', new_event_path, class:'btn btn-success btn-sm' %>
+  
+  </div>
+</div>
