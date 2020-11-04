@@ -12,9 +12,6 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    redirect_to participations_path(@event)
-    redirect_to new_participation_path(@event)
-
   end
 
   # GET /events/new

@@ -16,6 +16,7 @@ class ParticipationsController < ApplicationController
   # GET /participations/new
   def new
     @participation = Participation.new
+    @event = Event.find(params[:event_id])
   end
 
   # GET /participations/1/edit
@@ -25,11 +26,9 @@ class ParticipationsController < ApplicationController
   # POST /participations
   # POST /participations.json
   def create
-    @participation = Participation.new(participation_params)
-    @participation.user_id = current_user.id
-    @participation.event_id = @event.id
+    @participation = Participation.new(stripe_customer_id: params[:token], user_id: current_user.id, event_id: Event.find(params[:event_id]))
 
-    @amount = @event.price
+    @amount = Event.find(params[:event_id]).price
 
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -45,7 +44,7 @@ class ParticipationsController < ApplicationController
 
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to new_participation_path
+      redirect_to new_event_participation_path
 
     @participation.stripe_customer_id = charge.customer
 
