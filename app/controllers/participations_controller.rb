@@ -26,11 +26,33 @@ class ParticipationsController < ApplicationController
   # POST /participations.json
   def create
     @participation = Participation.new(participation_params)
+    @participation.user_id = current_user.id
+    @participation.event_id = @event.id
+
+    @amount = @event.price
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      description: 'Rails Stripe customer',
+      currency: 'eur',
+    })
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_participation_path
+
+    @participation.stripe_customer_id = charge.customer
 
     respond_to do |format|
       if @participation.save
-        format.html { redirect_to @participation, notice: 'Participation was successfully created.' }
-        format.json { render :show, status: :created, location: @participation }
+        format.html { redirect_to @event, notice: 'Participation was successfully created.' }
+        format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
@@ -70,6 +92,6 @@ class ParticipationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def participation_params
-      params.require(:participation).permit(:stripe_customer_id)
+      params.permit(:stripe_customer_id, :user_id, :event_id)
     end
 end

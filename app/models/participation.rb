@@ -5,7 +5,6 @@ class Participation < ApplicationRecord
     ParticipationMailer.accept(self).deliver_now
   end
 
-
   belongs_to :user, optional: true
-belongs_to :event, optional: true
+  belongs_to :event, optional: true
 end

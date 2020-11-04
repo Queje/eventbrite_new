@@ -1,7 +1,9 @@
 class Event < ApplicationRecord
 has_many :participations
-has_many :users, through: :participations
-belongs_to :user
+has_many :participants, through: :attendances, source: :event
+belongs_to :admin, class_name: "User"
+
+
 validates :start_date, presence: true
 validates :duration, presence: true
 validates :title, presence: true

@@ -1,4 +1,4 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center bg-cover text-white" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(https://images.pexels.com/photos/431722/pexels-photo-431722.jpeg?cs=srgb&dl=pexels-abby-kihano-431722.jpg&fm=jpg); background-size: 100%;">
     <h1 class="display-4">Bienvenue sur Events News!</h1>
     <p class="lead">Poster vos evenements et partager le fun!</p>
     <hr class="my-4">
@@ -37,8 +37,6 @@
           <td><%= event.price %></td>
           <td><%= event.location %></td>
           <td><%= link_to 'Show', event, class:'text-primary' %></td>
-          <td><%= link_to 'Edit', edit_event_path(event), class:'text-success' %></td>
-          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:'text-danger' %></td>
         </tr>
       <% end %>
     </tbody>

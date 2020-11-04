@@ -6,9 +6,9 @@ class ParticipationMailer < ApplicationMailer
     @user = User.find(participation.user_id)
 
     #on définit une variable @url qu'on utilisera dans la view d’e-mail
-    @url  = 'mon super_site.com' 
+    @url  = 'Event new' 
 
     # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @user.email, subject: 'Bienvenue chez nous !') 
+    mail(to: @user.email, subject: ' Tu participes à un evenement!') 
   end
 end

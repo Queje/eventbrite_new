@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 2020_11_03_094118) do
     t.text "description"
     t.integer "price"
     t.string "location"
-    t.bigint "user_id"
+    t.bigint "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_events_on_user_id"
+    t.index ["admin_id"], name: "index_events_on_admin_id"
   end
 
   create_table "participations", force: :cascade do |t|

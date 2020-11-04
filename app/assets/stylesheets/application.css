@@ -18,3 +18,10 @@
     background-image: url('party.jpg');
     background-position: cover;
  }
+
+ .bg-cover {
+   background-attachment: static;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}

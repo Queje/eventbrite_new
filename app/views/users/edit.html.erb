@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-body text-center">
+
+        <% if @user.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à modifier les informations pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+        <% end %>
+
+        <div class= "container">
+            <h4>édition de vos informations</h4></br>
+            
+            <%= form_for @user do |f| %>
+                <div class= "form-group">
+                <label> Prénom à modifier </label>
+                <%= f.text_field :first_name, class: "form-control" %>
+                </div>
+
+                <div class= "form-group">
+                <label> Nom de famille à modifier </label>
+                <%= f.text_field :last_name, class: "form-control" %>
+                </div>
+
+                <div class= "form-group">
+                <label> Description à modifier </label>
+                <%= f.text_area :description, class: "form-control" %>
+                </div>
+
+                <div class= "form-group">
+                <button type="submit" class= "btn btn-primary">Editer</button>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+</div>
