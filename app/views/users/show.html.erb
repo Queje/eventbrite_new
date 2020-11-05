@@ -1,31 +1,58 @@
-<div class="card">
-  <div class="card-body text-center">
-     
-  <h4><U>Votre profil:</U></h4></br>
-  <p><strong>Prénom :</strong> <%=@user.first_name%></p>
-  <p><strong>Nom de famille :</strong>   <%= @user.last_name%></p>
-  <p><strong>Description :</strong> <%= @user.description%></p>
-  <p><strong>Email :</strong> <%= @user.email%></p>
-  <p>Vous pouvez éditer vos informations en <%= link_to "cliquant ici", edit_user_path, class:'text-success' %></p>
-  
-  <p>Vous pouvez changer votre email et mot de passe en <%= link_to "cliquant ici", edit_user_registration_path, class:'text-secondary' %></p> </br>
-  
-  <h4>Les évènements que vous avez créés :</h4>
-  <div class="row justify-content-md-center">
-  <% @events.each_with_index do |event, index| %>
-    </br>
-    <div class="card m-4" style="width: 18rem;">
-    <div class="card-body">
-    <h5 class="card-title"><%= event.title %></h5>
-    <p class="card-text"><%= event.start_date %></p>
-    <p class="card-text"><%= event.location %></p>
-    <p class="card-text"><%= event.price %></p>
-    
-    <div class="btn btn-warning"> <%= link_to "Lien vers l évènement", event_path(event.id) %></div>
-    </div>
-    </div>
-    <% end %>
-    </div>
+  <div class="container-fluid">
+    <div class="row">
+      
+      <div class="col">
+        <div class="card">
+          <div class="card-body text-center">
+      
+            <h4><U>Avatar actuel:</U></h4>
+            <%if @user.avatar.attached?%>
+                <%= image_tag @user.avatar, alt: 'avatar', :width =>'200', :height=>'200' %>
+            <%else%>
+                <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+            <%end%>
+                </br>
+            <h5><U>Changer d'avatar ?</U></h5>
+            <%= form_tag user_avatars_path(@user), multipart: true do %>
+              <%= file_field_tag :avatar %>
+              <%= submit_tag "mettre à jour" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+   
 
-</div>
-</div>
+      <div class="col">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h4><U>Votre profil:</U></h4></br>
+            <p><strong>Prénom :</strong> <%=@user.first_name%></p>
+            <p><strong>Nom de famille :</strong>   <%= @user.last_name%></p>
+            <p><strong>Description :</strong> <%= @user.description%></p>
+            <p><strong>Email :</strong> <%= @user.email%></p>
+            <p>Vous pouvez éditer vos informations en <%= link_to "cliquant ici", edit_user_path, class:'text-success' %></p>
+            <p>Vous pouvez changer votre email et mot de passe en <%= link_to "cliquant ici", edit_user_registration_path, class:'text-secondary' %></p>
+          </div>
+        </div>
+      </div>
+    </div>          
+            
+    <div class="card text-center">
+      <h4><U>Les évènements que vous avez créés :</U></h4>
+      <div class="row justify-content-md-center">
+        <% @events.each_with_index do |event, index| %>
+        </br>
+          <div class="card m-4" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= event.title %></h5>
+              <p class="card-text"><%= event.start_date %></p>
+              <p class="card-text"><%= event.location %></p>
+              <p class="card-text"><%= event.price %></p>
+              </br>
+              <div class="btn btn-warning"> <%= link_to "Lien vers l évènement", event_path(event.id) %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

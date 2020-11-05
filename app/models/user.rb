@@ -12,4 +12,5 @@ class User < ApplicationRecord
   
   has_many :participations
   has_many :admins, foreign_key: 'admin_id', class_name: "Event", dependent: :destroy
+  has_one_attached :avatar
 end

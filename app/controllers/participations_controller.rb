@@ -50,8 +50,8 @@ class ParticipationsController < ApplicationController
 
     respond_to do |format|
       if @participation.save
-        format.html { redirect_to @event, notice: 'Participation was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.html { redirect_to event_path, notice: 'Participation was successfully created.' }
+        format.json { render :show, status: :created, location: event_path }
       else
         format.html { render :new }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
