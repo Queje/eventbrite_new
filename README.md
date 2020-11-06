@@ -1,9 +1,4 @@
 # README
 
-http://murmuring-spire-32624.herokuapp.com/
-
-an event brite type of app
-
-check it out on the link above.
-
+an event brite type of app, old version. lots of bugs.
 enjoy!
